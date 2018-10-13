@@ -154,14 +154,12 @@ leafletMap = L.map('map').setView([51.0, 10.2], 7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{param}', { param: '' }).addTo(leafletMap);
 
 // Load data
-fetchJSON("./data.json", (result, error) => {
-    if (result) {
-        data = result;
+if (result) {
+    data = result;
 
-        // Create and add WebGL layer
-        var customLayer = new CustomLayer();
-        customLayer.addTo(leafletMap);
-    } else if (error) {
-        console.log(error);
-    }
-});
+    // Create and add WebGL layer
+    var customLayer = new CustomLayer();
+    customLayer.addTo(leafletMap);
+} else if (error) {
+    console.log(error);
+}

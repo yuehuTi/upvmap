@@ -19,8 +19,8 @@ if __name__ == '__main__':
             if row[4] != "failed" and ((row[3].startswith("hacked") and row[3].endswith("portal")) or row[3].endswith("deployed")) and [row[1], row[2]] not in jsondict["visits"] and [row[1], row[2]] not in jsondict["captures"]:
                 jsondict["visits"].append([row[1], row[2]])
 
-        export_data = open("html/data.json", "w+")
-        export_data.write(json.dumps(jsondict))
+        export_data = open("html/data.js", "w+")
+        export_data.write("result = "+json.dumps(jsondict))
         export_data.close()
         print "Done!"
         print "Please open \"html/index.html\" to view your upv map"
