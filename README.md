@@ -4,7 +4,7 @@
 
 不需要docker，
 
-下个Python2.x之后
+下个Python之后
 
 将game_log.tsv放到代码目录下，双击运行import.py
 
