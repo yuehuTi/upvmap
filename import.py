@@ -20,8 +20,8 @@ if __name__ == '__main__':
 		if row[4] != 'failed' and ((row[3].startswith('hacked') and row[3].endswith('portal')) or row[3].endswith('deployed')):
 			visits.add((row[1], row[2]))
 
-	l_visits = [list(x) for x in captures]
-	l_captures = [list(x) for x in visits if x not in captures]
+	l_captures = [list(x) for x in captures]
+	l_visits = [list(x) for x in visits if x not in captures]
 
 	logfd.close()
 
