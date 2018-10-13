@@ -150,7 +150,7 @@ function setUniforms(map, color) {
 }
 
 // INIT
-leafletMap = L.map('map').setView([51.0, 10.2], 7);
+leafletMap = L.map('map').setView([30.710492, 110.954297], 4);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{param}', { param: '' }).addTo(leafletMap);
 
 // Load data
