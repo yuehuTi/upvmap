@@ -8,7 +8,7 @@ if __name__ == '__main__':
     logfd = open('game_log.tsv', 'rb')
     with open('game_log.tsv', 'rb') as logfd:
         spamreader = csv.reader(logfd, delimiter='	', quotechar='|')
-        print "Processing……"
+        print "Processing...."
 
         for row in spamreader:
             if row[3] == "captured portal" and row[4] != "failed" and [row[1], row[2]] not in jsondict["captures"]:
