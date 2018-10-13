@@ -7,20 +7,21 @@ if __name__ == '__main__':
 		logfd = open('game_log.tsv', 'rb')
 	else:
 		logfd = open('game_log.tsv', encoding='utf8')
+
 	spamreader = csv.reader(logfd, delimiter='\t', quotechar='|')
 	print('Processing....')
 
 	for row in spamreader:
 		if row[3] == 'captured portal' and row[4] != 'failed':
-			visits.add((row[1], row[2]))
+			captures.add((row[1], row[2]))
 
 	logfd.seek(0)
 	for row in spamreader:
 		if row[4] != 'failed' and ((row[3].startswith('hacked') and row[3].endswith('portal')) or row[3].endswith('deployed')):
-			captures.add((row[1], row[2]))
-	
-	l_visits = [list(x) for x in visits]
-	l_captures = [list(x) for x in captures if x not in visits]
+			visits.add((row[1], row[2]))
+
+	l_visits = [list(x) for x in captures]
+	l_captures = [list(x) for x in visits if x not in captures]
 
 	logfd.close()
 
