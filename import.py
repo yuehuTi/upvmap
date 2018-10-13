@@ -22,4 +22,6 @@ if __name__ == '__main__':
         export_data = open("html/data.json", "w+")
         export_data.write(json.dumps(jsondict))
         export_data.close()
+        print "Done!"
+        print "Please open \"html/index.html\" to view your upv map"
 
