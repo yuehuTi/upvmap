@@ -27,6 +27,9 @@ if __name__ == '__main__':
         #link
         if row[3] == 'created link':
             visits.add((row[1], row[2]))
+        #virus
+        if row[3].startswith('used') and row[3].endswith('virus'):
+            visits.add((row[1], row[2]))
 
     l_captures = [list(x) for x in captures]
     l_visits = [list(x) for x in visits if x not in captures]
