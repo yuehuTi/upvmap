@@ -1,35 +1,50 @@
 # -*- coding: utf-8 -*-
 import sys, csv, json
+try:
+    # for Python 2.x
+    from StringIO import StringIO
+except ImportError:
+    # for Python 3.x
+    from io import StringIO
 
 if __name__ == '__main__':
     visits, captures = set(), set()
     if sys.version_info[0] == 2:
-        logfd = open('game_log.tsv', 'rb')
+        logfd = open('game_log.tsv', 'rU')
     else:
         logfd = open('game_log.tsv', encoding='utf8')
+    data = logfd.read()
+    data = data.replace('\0', '')
 
-    spamreader = csv.reader(logfd, delimiter='\t', quotechar='|')
+    f = StringIO(data)
+    
+    spamreader = csv.DictReader(f, delimiter='\t', quotechar='|')
     print('Processing....')
 
-    for row in spamreader:
-        if row[4] == 'failed':
-            continue
+    try:
+        for row in spamreader:
+            try:            
+                if row["Comments"] == 'failed':
+                    continue
+                if row["Tracker Trigger"] == 'captured portal':
+                    captures.add((row["Event Lat"], row["Event Lng"]))
 
-        if row[3] == 'captured portal':
-            captures.add((row[1], row[2]))
-
-        #hack
-        if row[3].startswith('hacked') and row[3].endswith('portal'):
-            visits.add((row[1], row[2]))
-        #deloyed resnator or mod
-        if row[3].endswith('deployed'):
-            visits.add((row[1], row[2]))
-        #link
-        if row[3] == 'created link':
-            visits.add((row[1], row[2]))
-        #virus
-        if row[3].startswith('used') and row[3].endswith('virus'):
-            visits.add((row[1], row[2]))
+                #hack
+                if row["Tracker Trigger"].startswith('hacked') and row["Tracker Trigger"].endswith('portal'):
+                    visits.add((row["Event Lat"], row["Event Lng"]))
+                #deloyed resnator or mod
+                if row["Tracker Trigger"].endswith('deployed'):
+                    visits.add((row["Event Lat"], row["Event Lng"]))
+                #link
+                if row["Tracker Trigger"] == 'created link':
+                    visits.add((row["Event Lat"], row["Event Lng"]))
+                #virus
+                if row["Tracker Trigger"].startswith('used') and row["Tracker Trigger"].endswith('virus'):
+                    visits.add((row["Event Lat"], row["Event Lng"]))
+            except Exception as e:
+                continue
+    except Exception as e:
+        print row
 
     l_captures = [list(x) for x in captures]
     l_visits = [list(x) for x in visits if x not in captures]
