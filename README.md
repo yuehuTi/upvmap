@@ -6,7 +6,7 @@
 
 下个Python之后
 
-将game_log.tsv放到代码目录下，双击运行import.py
+将收到的gdpr数据包解压，把其中的game_log.tsv放到代码目录下，双击运行import.py
 
 （python也不会使的，可以下载 https://github.com/yuehuTi/upvmap/releases/ 解压后把game_log.tsv放到目录下，双击import.exe）
 
