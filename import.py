@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 if row["Tracker Trigger"].startswith('hacked') and row["Tracker Trigger"].endswith('portal'):
                     visits.add((row["Event Lat"], row["Event Lng"]))
                 #deloyed resnator or mod
-                if row["Tracker Trigger"].endswith('deployed'):
+                if row["Tracker Trigger"] == 'resonator deployed':
                     visits.add((row["Event Lat"], row["Event Lng"]))
                 #link
                 if row["Tracker Trigger"] == 'created link':
