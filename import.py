@@ -44,7 +44,7 @@ if __name__ == '__main__':
             except Exception as e:
                 continue
     except Exception as e:
-        print row
+        print(row)
 
     l_captures = [list(x) for x in captures]
     l_visits = [list(x) for x in visits if x not in captures]
